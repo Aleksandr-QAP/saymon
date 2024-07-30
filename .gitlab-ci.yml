@@ -1,0 +1,22 @@
+stages:
+  - saymon
+
+variables:
+  BROWSER: chrome
+
+e2e:remote:saymon:
+  stage: saymon
+  tags:
+    - docker
+  image: python:3.10-alpine
+  services:
+    - selenium/standalone-chrome
+  before_script:
+    - pip3 install -r requirements.txt
+  script:
+    - pytest --html=report_saymon.html --self-contained-html --browser=$BROWSER ./tests/test_saymon.py
+  allow_failure: true
+  artifacts:
+    when: always
+    paths:
+      - saymon.html
