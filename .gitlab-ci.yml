@@ -19,4 +19,4 @@ e2e:remote:saymon:
   artifacts:
     when: always
     paths:
-      - saymon.html
+      - report_saymon.html
